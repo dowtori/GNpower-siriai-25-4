@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gangneung City Influencer Recruitment | SIRIAI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;700&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash" class="splash-screen">
+        <div class="splash-content">
+            <h1 class="fade-in">Select Your Language</h1>
+            <div class="lang-options">
+                <button onclick="setLanguage('ko')" class="lang-btn">한국어 (KR)</button>
+                <button onclick="setLanguage('ja')" class="lang-btn">日本語 (JP)</button>
+                <button onclick="setLanguage('zh-tw')" class="lang-btn">繁體中文 (TW)</button>
+            </div>
+            <p class="managed-by">Managed by <strong>SIRIAI</strong></p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="hidden">
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <span class="pine">PINE</span><span class="city">CITY</span>
+                    <span class="sub">Gangneung-si</span>
+                </div>
+                <nav>
+                    <select id="lang-selector" onchange="setLanguage(this.value)">
+                        <option value="ko">KR</option>
+                        <option value="ja">JP</option>
+                        <option value="zh-tw">TW</option>
+                    </select>
+                </nav>
+            </div>
+        </header>
+
+        <section id="hero" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-text">
+                <h2 data-i18n="hero_sub">Gangneung City Special Project</h2>
+                <h1 data-i18n="hero_title">Overseas IG Power Page Recruitment</h1>
+                <p data-i18n="hero_desc">Help us promote the iconic 'Goblin' filming location to the world.</p>
+                <a href="#apply" class="cta-btn" data-i18n="apply_now">Apply Now</a>
+            </div>
+        </section>
+
+        <section id="details" class="details-section">
+            <div class="container">
+                <div class="details-grid">
+                    <div class="detail-card animate-on-scroll">
+                        <i data-lucide="award"></i>
+                        <h3 data-i18n="benefit_title">Remuneration</h3>
+                        <p data-i18n="benefit_desc">300,000 KRW per post</p>
+                    </div>
+                    <div class="detail-card animate-on-scroll">
+                        <i data-lucide="users"></i>
+                        <h3 data-i18n="target_title">Target Channels</h3>
+                        <p data-i18n="target_desc">Travel/Leisure/Activity (50k+ Followers)</p>
+                    </div>
+                    <div class="detail-card animate-on-scroll">
+                        <i data-lucide="calendar"></i>
+                        <h3 data-i18n="deadline_title">Deadline</h3>
+                        <p data-i18n="deadline_desc">Until April 3rd (Fri)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="guide" class="guide-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="guide_title">Recruitment Guide</h2>
+                <div class="guide-content glass">
+                    <div class="guide-item">
+                        <h4 data-i18n="item_theme">Promotion Theme</h4>
+                        <p data-i18n="item_theme_desc">Yeongjin Beach (Goblin Filming Location) & Seasonal Travel Spots in Gangneung</p>
+                    </div>
+                    <div class="guide-item">
+                        <h4 data-i18n="item_schedule">Schedule</h4>
+                        <ul class="timeline">
+                            <li><strong data-i18n="schedule_1">Selection:</strong> Week of April 7th</li>
+                            <li><strong data-i18n="schedule_2">Content:</strong> Mid April</li>
+                            <li><strong data-i18n="schedule_3">Posting:</strong> Week of April 20th</li>
+                        </ul>
+                    </div>
+                    <div class="guide-item">
+                        <h4 data-i18n="item_portfolio">Agency Portfolio</h4>
+                        <p><a href="https://featpaper.com/v/7jqtPGf2" target="_blank" class="link-btn">View SIRIAI Portfolio <i data-lucide="external-link"></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="apply" class="apply-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="apply_title">Channel Application</h2>
+                <form id="application-form" class="glass">
+                    <div class="form-group">
+                        <label for="page-name" data-i18n="form_page_name">Page Name / ID</label>
+                        <input type="text" id="page-name" required placeholder="@example_travel">
+                    </div>
+                    <div class="form-group">
+                        <label for="country" data-i18n="form_country">Target Region</label>
+                        <select id="country" required>
+                            <option value="Japan">Japan (日本)</option>
+                            <option value="Taiwan">Taiwan (臺灣)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="followers" data-i18n="form_followers">Follower Count</label>
+                        <input type="number" id="followers" required placeholder="50000+">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact" data-i18n="form_contact">Contact (Email/WhatsApp/Line)</label>
+                        <input type="text" id="contact" required>
+                    </div>
+                    <button type="submit" class="submit-btn" data-i18n="form_submit">Submit Application</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2026 Gangneung City. Managed by <a href="https://featpaper.com/v/7jqtPGf2" target="_blank">SIRIAI</a>. Partnering with WithU Company.</p>
+                <div class="footer-links">
+                    <a href="https://www.instagram.com/p/DVvRqn6EdL8" target="_blank">Content Ref</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

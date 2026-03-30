@@ -1,0 +1,145 @@
+const translations = {
+    ko: {
+        hero_sub: "강릉시 특별 프로젝트",
+        hero_title: "해외 IG 파워페이지 홍보 채널 모집",
+        hero_desc: "드라마 '도깨비' 촬영지, 영진 해변을 전 세계에 알릴 파워 페이지를 찾습니다.",
+        apply_now: "지금 지원하기",
+        benefit_title: "활동 혜택",
+        benefit_desc: "건당 300,000 KRW (원고료)",
+        target_title: "모집 대상",
+        target_desc: "여행/레저/액티비티 (팔로워 5만 이상)",
+        deadline_title: "모집 기한",
+        deadline_desc: "4월 3일(금)까지",
+        guide_title: "모집 가이드",
+        item_theme: "홍보 주제",
+        item_theme_desc: "영진해변(도깨비 촬영지) 및 강릉 주요 관광지",
+        item_schedule: "진행 일정",
+        schedule_1: "선정 안내:",
+        schedule_2: "콘텐츠 제작:",
+        schedule_3: "게시 예정:",
+        item_portfolio: "운영사 포트폴리오",
+        apply_title: "지원하기",
+        form_page_name: "페이지 명 / ID",
+        form_country: "활용 지역",
+        form_followers: "팔로워 수",
+        form_contact: "연락처 (Email/Line/WhatsApp)",
+        form_submit: "지원서 제출"
+    },
+    ja: {
+        hero_sub: "江陵市特別プロジェクト",
+        hero_title: "海外IGパワーページ 宣伝チャンネル募集",
+        hero_desc: "ドラマ『トッケビ』のロケ地、領津（ヨンジ）海辺を世界に広めるパワーページを募集します。",
+        apply_now: "今すぐ応募",
+        benefit_title: "活動特典",
+        benefit_desc: "1件につき 300,000 KRW (原稿料)",
+        target_title: "募集対象",
+        target_desc: "旅行/レジャー/アクティビティ (フォロワー5万人以上)",
+        deadline_title: "募集期限",
+        deadline_desc: "4月3日(金)まで",
+        guide_title: "募集ガイド",
+        item_theme: "プロモーションテーマ",
+        item_theme_desc: "領津海辺（『トッケビ』ロケ地）および江陵の主要観光地",
+        item_schedule: "進行スケジュール",
+        schedule_1: "選定案内:",
+        schedule_2: "コンテンツ制作:",
+        schedule_3: "投稿予定:",
+        item_portfolio: "運営会社ポートフォリオ",
+        apply_title: "チャンネル応募",
+        form_page_name: "ページ名 / ID",
+        form_country: "活用地域",
+        form_followers: "フォロワー数",
+        form_contact: "連絡先 (Email/Line/WhatsApp)",
+        form_submit: "応募する"
+    },
+    "zh-tw": {
+        hero_sub: "江陵市特別項目",
+        hero_title: "海外 IG Power Page 宣傳頻道招募",
+        hero_desc: "尋找能向世界推廣韓劇《孤單又燦爛的神－鬼怪》拍攝地——領津海邊的 Power Page。",
+        apply_now: "立即申請",
+        benefit_title: "活動福利",
+        benefit_desc: "每件 300,000 KRW (稿費)",
+        target_title: "招募對象",
+        target_desc: "旅遊/休閒/活動 (粉絲數 5萬以上)",
+        deadline_title: "截止日期",
+        deadline_desc: "截至 4月3日(五)",
+        guide_title: "招募指南",
+        item_theme: "宣傳主題",
+        item_theme_desc: "領津海邊（《鬼怪》拍攝地）及江陵主要旅遊景點",
+        item_schedule: "活動時程",
+        schedule_1: "入選通知:",
+        schedule_2: "內容製作:",
+        schedule_3: "預計發布:",
+        item_portfolio: "營運代理商作品集",
+        apply_title: "頻道申請",
+        form_page_name: "頁面名稱 / ID",
+        form_country: "目標地區",
+        form_followers: "粉絲人數",
+        form_contact: "聯繫方式 (Email/Line/WhatsApp)",
+        form_submit: "提交申請"
+    }
+};
+
+function setLanguage(lang) {
+    const splash = document.getElementById('splash');
+    const mainContent = document.getElementById('main-content');
+    const langSelector = document.getElementById('lang-selector');
+
+    // Update Text Content
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+
+    // Handle Layout Visibility
+    splash.style.opacity = '0';
+    setTimeout(() => {
+        splash.classList.add('hidden');
+        mainContent.classList.remove('hidden');
+        mainContent.style.opacity = '1';
+    }, 800);
+
+    // Sync Selector
+    langSelector.value = lang;
+    
+    // Refresh Icons
+    lucide.createIcons();
+}
+
+// Form Handling
+document.getElementById('application-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = e.target.querySelector('.submit-btn');
+    submitBtn.textContent = "Submitting...";
+    submitBtn.disabled = true;
+
+    // Simulate API Call
+    setTimeout(() => {
+        alert("Thank you! Your application has been submitted.\n감사합니다! 지원이 완료되었습니다.");
+        submitBtn.textContent = "Submitted Successfully";
+        e.target.reset();
+    }, 1500);
+});
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+});
+
+// Initialize Icons
+lucide.createIcons();
