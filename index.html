@@ -33,11 +33,18 @@
                     <span class="sub">Gangneung-si</span>
                 </div>
                 <nav>
-                    <select id="lang-selector" onchange="setLanguage(this.value)">
-                        <option value="ko">KR</option>
-                        <option value="ja">JP</option>
-                        <option value="zh-tw">TW</option>
-                    </select>
+                    <div class="lang-picker">
+                        <button class="lang-toggle" onclick="toggleDropdown()">
+                            <i data-lucide="globe"></i>
+                            <span class="active-lang-label">KR</span>
+                            <i data-lucide="chevron-down"></i>
+                        </button>
+                        <div class="lang-dropdown">
+                            <button onclick="setLanguage('ko')">한국어 (KR)</button>
+                            <button onclick="setLanguage('ja')">日本語 (JP)</button>
+                            <button onclick="setLanguage('zh-tw')">繁體中文 (TW)</button>
+                        </div>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -61,14 +68,14 @@
                         <p data-i18n="benefit_desc">300,000 KRW per post</p>
                     </div>
                     <div class="detail-card animate-on-scroll">
-                        <i data-lucide="users"></i>
+                        <i data-lucide="heart"></i>
                         <h3 data-i18n="target_title">Target Channels</h3>
-                        <p data-i18n="target_desc">Travel/Leisure/Activity (50k+ Followers)</p>
+                        <p data-i18n="target_desc">A precious opportunity only for selected channels.</p>
                     </div>
                     <div class="detail-card animate-on-scroll">
                         <i data-lucide="calendar"></i>
                         <h3 data-i18n="deadline_title">Deadline</h3>
-                        <p data-i18n="deadline_desc">Until April 3rd (Fri)</p>
+                        <p data-i18n="deadline_desc">Until April 5th (Sun)</p>
                     </div>
                 </div>
             </div>
@@ -103,8 +110,8 @@
                 <h2 class="section-title" data-i18n="apply_title">Channel Application</h2>
                 <form id="application-form" class="glass">
                     <div class="form-group">
-                        <label for="page-name" data-i18n="form_page_name">Page Name / ID</label>
-                        <input type="text" id="page-name" required placeholder="@example_travel">
+                        <label for="page-url" data-i18n="form_page_name">Profile Link (URL)</label>
+                        <input type="url" id="page-url" required placeholder="https://www.instagram.com/your_page">
                     </div>
                     <div class="form-group">
                         <label for="country" data-i18n="form_country">Target Region</label>
@@ -114,12 +121,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="followers" data-i18n="form_followers">Follower Count</label>
-                        <input type="number" id="followers" required placeholder="50000+">
-                    </div>
-                    <div class="form-group">
                         <label for="contact" data-i18n="form_contact">Contact (Email/WhatsApp/Line)</label>
                         <input type="text" id="contact" required>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="agreement" required>
+                        <label for="agreement" data-i18n="form_agreement">I agree to the project details.</label>
                     </div>
                     <button type="submit" class="submit-btn" data-i18n="form_submit">Submit Application</button>
                 </form>
@@ -128,7 +135,7 @@
 
         <footer>
             <div class="container">
-                <p>&copy; 2026 Gangneung City. Managed by <a href="https://featpaper.com/v/7jqtPGf2" target="_blank">SIRIAI</a>. Partnering with WithU Company.</p>
+                <p>&copy; 2026 Gangneung City. Managed by <a href="https://featpaper.com/v/7jqtPGf2" target="_blank">SIRIAI</a>.</p>
                 <div class="footer-links">
                     <a href="https://www.instagram.com/p/DVvRqn6EdL8" target="_blank">Content Ref</a>
                 </div>

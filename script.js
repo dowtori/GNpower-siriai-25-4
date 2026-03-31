@@ -19,16 +19,16 @@ const translations = {
         schedule_3: "게시 예정:",
         item_portfolio: "운영사 포트폴리오",
         apply_title: "지원하기",
-        form_page_name: "페이지 명 / ID",
+        form_page_name: "인스타그램 프로필 링크 (URL)",
         form_country: "활용 지역",
-        form_followers: "팔로워 수",
+        form_agreement: "위 프로젝트 진행 내용에 동의합니다.",
         form_contact: "연락처 (Email/Line/WhatsApp)",
         form_submit: "지원서 제출"
     },
     ja: {
         hero_sub: "江陵市特別プロジェクト",
-        hero_title: "海外IGパワー페이지 宣伝チャンネル募集",
-        hero_desc: "ドラマ『トッケビ』のロケ地、領津（ヨンジ）海辺を世界に広めるパワー페이지를 募集します。",
+        hero_title: "海外IGパワーページ 宣伝チャンネル募集",
+        hero_desc: "ドラマ『トッケビ』のロケ地、領津（ヨンジ）海辺を世界に広めるパワーページを募集します。",
         apply_now: "今すぐ応募",
         benefit_title: "活動特典",
         benefit_desc: "300,000 KRW",
@@ -45,9 +45,9 @@ const translations = {
         schedule_3: "投稿予定:",
         item_portfolio: "運営会社ポートフォリオ",
         apply_title: "チャンネル応募",
-        form_page_name: "ページ名 / ID",
+        form_page_name: "Instagramプロフィールリンク (URL)",
         form_country: "活用地域",
-        form_followers: "フォロワー数",
+        form_agreement: "上記のプロジェクト進行内容に同意します。",
         form_contact: "連絡先 (Email/Line/WhatsApp)",
         form_submit: "応募する"
     },
@@ -64,16 +64,16 @@ const translations = {
         deadline_desc: "截至 4月5日(日)",
         guide_title: "招募指南",
         item_theme: "宣傳主題",
-        item_theme_desc: "領津海邊（《鬼怪》拍攝地）及江陵主要旅遊景點",
+        item_theme_desc: "領津海邊（《鬼怪》拍攝地）及江릉主要旅遊景點",
         item_schedule: "活動時程",
         schedule_1: "入選通知:",
         schedule_2: "內容製作:",
         schedule_3: "預計發布:",
         item_portfolio: "營運代理商作品集",
         apply_title: "頻道申請",
-        form_page_name: "頁面名稱 / ID",
+        form_page_name: "Instagram 個人主頁連結 (URL)",
         form_country: "目標地區",
-        form_followers: "粉絲人數",
+        form_agreement: "我同意上述項目進行內容。",
         form_contact: "聯繫方式 (Email/Line/WhatsApp)",
         form_submit: "提交申請"
     }
@@ -82,35 +82,65 @@ const translations = {
 function setLanguage(lang) {
     const splash = document.getElementById('splash');
     const mainContent = document.getElementById('main-content');
-    const langSelector = document.getElementById('lang-selector');
+    
+    // Update Custom Select label
+    const activeLangLabel = document.querySelector('.active-lang-label');
+    if (activeLangLabel) {
+        const langMap = { 'ko': 'KR', 'ja': 'JP', 'zh-tw': 'TW' };
+        activeLangLabel.textContent = langMap[lang] || lang.toUpperCase();
+    }
 
     // Update Text Content
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
+        if (translations[lang] && translations[lang][key]) {
             el.textContent = translations[lang][key];
         }
     });
 
     // Handle Layout Visibility
-    splash.style.opacity = '0';
-    setTimeout(() => {
-        splash.classList.add('hidden');
-        mainContent.classList.remove('hidden');
-        mainContent.style.opacity = '1';
-    }, 800);
-
-    // Sync Selector
-    langSelector.value = lang;
+    if (splash && !splash.classList.contains('hidden')) {
+        splash.style.opacity = '0';
+        setTimeout(() => {
+            splash.classList.add('hidden');
+            mainContent.classList.remove('hidden');
+            mainContent.style.opacity = '1';
+        }, 800);
+    }
     
     // Refresh Icons
-    lucide.createIcons();
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+    
+    // Close dropdown if open
+    const dropdown = document.querySelector('.lang-dropdown');
+    if (dropdown) dropdown.classList.remove('active');
 }
+
+// Custom Language Dropdown Toggle
+function toggleDropdown() {
+    const dropdown = document.querySelector('.lang-dropdown');
+    dropdown.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+window.addEventListener('click', function(e) {
+    if (!document.querySelector('.lang-picker').contains(e.target)) {
+        document.querySelector('.lang-dropdown').classList.remove('active');
+    }
+});
 
 // Form Handling
 document.getElementById('application-form').addEventListener('submit', function(e) {
     e.preventDefault();
+    
+    if (!document.getElementById('agreement').checked) {
+        alert("Please agree to the project details to proceed.");
+        return;
+    }
+
     const submitBtn = e.target.querySelector('.submit-btn');
     submitBtn.textContent = "Submitting...";
     submitBtn.disabled = true;
@@ -142,4 +172,6 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
 });
 
 // Initialize Icons
-lucide.createIcons();
+if (window.lucide) {
+    lucide.createIcons();
+}
