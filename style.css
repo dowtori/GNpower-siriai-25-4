@@ -158,37 +158,54 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 100%);
+    background: rgba(0, 0, 0, 0.4); /* Slightly lighter overlay since we have the card */
 }
 
 .hero-text {
     position: relative;
     z-index: 1;
     color: white;
-    max-width: 800px;
+    max-width: 900px;
+    padding: 4rem 3rem;
+    background: rgba(13, 17, 23, 0.4); /* Glassmorphism Base */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    margin: 0 20px;
 }
 
 .hero-text h2 {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 5px;
-    margin-bottom: 1rem;
-    color: var(--primary-green);
+    letter-spacing: 4px;
+    margin-bottom: 2rem;
+    color: #00FF7F; /* Brighter, more vibrant green for contrast on dark glass */
+    background: rgba(0, 130, 72, 0.2);
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 255, 127, 0.3);
 }
 
 .hero-text h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 1.5rem;
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
 }
 
 .hero-text p {
-    font-size: 1.4rem;
-    margin-bottom: 2.5rem;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 300;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-btn {
