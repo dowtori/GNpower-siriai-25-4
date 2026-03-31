@@ -1,3 +1,9 @@
+const LOGO_MAP = {
+    'ko':    'assets/logos/logo_kr.png',
+    'ja':    'assets/logos/logo_zh.png',
+    'zh-tw': 'assets/logos/logo_zh.png'
+};
+
 const translations = {
     ko: {
         hero_sub: "강릉시 특별 프로젝트",
@@ -7,7 +13,7 @@ const translations = {
         benefit_title: "활동 혜택",
         benefit_desc: "30만원",
         target_title: "활동 안내",
-        target_desc: "최소 기준 충족 후 강릉시의 최종 검토를 거쳐 선별된 채널에 제공되는 소중한 기회입니다.",
+        target_desc: "최소 기준 충족 후 강릉시의 최종 검토를 거쳐 선발된 채널에 제공되는 소중한 기회입니다.",
         deadline_title: "모집 기한",
         deadline_desc: "4월 5일(일)까지",
         guide_title: "모집 가이드",
@@ -22,51 +28,51 @@ const translations = {
         form_page_name: "인스타그램 프로필 링크 (URL)",
         form_country: "활용 지역",
         form_agreement: "위 프로젝트 진행 내용에 동의합니다.",
-        form_contact: "연락처 (Email/Line/WhatsApp)",
+        form_contact: "연락처 (Email / Line / WhatsApp)",
         form_submit: "지원서 제출"
     },
     ja: {
         hero_sub: "江陵市特別プロジェクト",
         hero_title: "海外IGパワーページ 宣伝チャンネル募集",
-        hero_desc: "ドラマ『トッケビ』のロケ地、領津（ヨンジ）海辺를 世界に広めるパワーページを募集します。",
+        hero_desc: "ドラマ『トッケビ』のロケ地、領津海辺を世界に広めるパワーページを募集します。",
         apply_now: "今すぐ応募",
         benefit_title: "活動特典",
         benefit_desc: "300,000 KRW",
         target_title: "活動のご案内",
         target_desc: "最小基準を満たし、江陵市の最終検討を経て厳選されたチャンネルのみに提供される特別なご提案です。",
         deadline_title: "募集期限",
-        deadline_desc: "4月5일(일)까지",
+        deadline_desc: "4月5日（日）まで",
         guide_title: "募集ガイド",
         item_theme: "プロモーションテーマ",
-        item_theme_desc: "領津海辺（『トッケビ』ロケ地） 및 江陵의 主要 觀光地",
+        item_theme_desc: "領津海辺（『トッケビ』ロケ地）および江陵の主要観光地",
         item_schedule: "進行スケジュール",
-        schedule_1: "選定案内 (江陵市の検討):",
+        schedule_1: "選定案内（江陵市の検討）:",
         schedule_2: "コンテンツ制作:",
         schedule_3: "投稿予定:",
-        item_portfolio: "運営会社ポートフォ리오",
+        item_portfolio: "運営会社ポートフォリオ",
         apply_title: "チャンネル応募",
-        form_page_name: "Instagramプロフィール링크 (URL)",
+        form_page_name: "Instagramプロフィールリンク (URL)",
         form_country: "活用地域",
         form_agreement: "上記のプロジェクト進行内容に同意します。",
-        form_contact: "連絡先 (Email/Line/WhatsApp)",
+        form_contact: "連絡先 (Email / Line / WhatsApp)",
         form_submit: "応募する"
     },
     "zh-tw": {
         hero_sub: "江陵市特別項目",
         hero_title: "海外 IG Power Page 宣傳頻道招募",
-        hero_desc: "尋找能向世界推廣韓劇《孤單又燦爛的神－鬼怪》拍攝地——領津海邊의 Power Page。",
+        hero_desc: "尋找能向世界推廣韓劇《孤單又燦爛的神－鬼怪》拍攝地——領津海邊的 Power Page。",
         apply_now: "立即申請",
         benefit_title: "活動福利",
         benefit_desc: "300,000 KRW",
         target_title: "活動指南",
         target_desc: "這是僅向符合最低標準並經過江陵市最終審核的精選頻道提供的專屬邀約。",
         deadline_title: "截止日期",
-        deadline_desc: "截至 4월 5일(일)",
+        deadline_desc: "截至 4月5日（日）",
         guide_title: "招募指南",
         item_theme: "宣傳主題",
         item_theme_desc: "領津海邊（《鬼怪》拍攝地）及江陵主要旅遊景點",
         item_schedule: "活動時程",
-        schedule_1: "入選通知 (江陵市審核):",
+        schedule_1: "入選通知（江陵市審核）:",
         schedule_2: "內容製作:",
         schedule_3: "預計發布:",
         item_portfolio: "營運代理商作品集",
@@ -74,7 +80,7 @@ const translations = {
         form_page_name: "Instagram 個人主頁連結 (URL)",
         form_country: "目標地區",
         form_agreement: "我同意上述項目進行內容。",
-        form_contact: "聯繫方式 (Email/Line/WhatsApp)",
+        form_contact: "聯繫方式 (Email / Line / WhatsApp)",
         form_submit: "提交申請"
     }
 };
@@ -82,24 +88,27 @@ const translations = {
 function setLanguage(lang) {
     const splash = document.getElementById('splash');
     const mainContent = document.getElementById('main-content');
-    
-    // Update Custom Select label
-    const activeLangLabel = document.querySelector('.active-lang-label');
-    if (activeLangLabel) {
-        const langMap = { 'ko': 'KR', 'ja': 'JP', 'zh-tw': 'TW' };
-        activeLangLabel.textContent = langMap[lang] || lang.toUpperCase();
-    }
 
-    // Update Text Content
-    const elements = document.querySelectorAll('[data-i18n]');
-    elements.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
-        }
+    // Update logos dynamically
+    const logoSrc = LOGO_MAP[lang] || LOGO_MAP['ko'];
+    ['header-logo', 'splash-logo'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.src = logoSrc;
     });
 
-    // Handle Layout Visibility
+    // Update language label
+    const langMap = { 'ko': 'KR', 'ja': 'JP', 'zh-tw': 'TW' };
+    const label = document.querySelector('.active-lang-label');
+    if (label) label.textContent = langMap[lang] || 'KR';
+
+    // Swap all i18n text
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const t = translations[lang];
+        if (t && t[key]) el.textContent = t[key];
+    });
+
+    // Hide splash if visible
     if (splash && !splash.classList.contains('hidden')) {
         splash.style.opacity = '0';
         setTimeout(() => {
@@ -108,70 +117,52 @@ function setLanguage(lang) {
             mainContent.style.opacity = '1';
         }, 800);
     }
-    
-    // Refresh Icons
-    if (window.lucide) {
-        lucide.createIcons();
-    }
-    
-    // Close dropdown if open
-    const dropdown = document.querySelector('.lang-dropdown');
-    if (dropdown) dropdown.classList.remove('active');
+
+    // Refresh icons & close dropdown
+    if (window.lucide) lucide.createIcons();
+    const dd = document.querySelector('.lang-dropdown');
+    if (dd) dd.classList.remove('active');
 }
 
-// Custom Language Dropdown Toggle
 function toggleDropdown() {
-    const dropdown = document.querySelector('.lang-dropdown');
-    dropdown.classList.toggle('active');
+    document.querySelector('.lang-dropdown').classList.toggle('active');
 }
 
-// Close dropdown when clicking outside
-window.addEventListener('click', function(e) {
-    if (!document.querySelector('.lang-picker').contains(e.target)) {
+window.addEventListener('click', e => {
+    const picker = document.querySelector('.lang-picker');
+    if (picker && !picker.contains(e.target)) {
         document.querySelector('.lang-dropdown').classList.remove('active');
     }
 });
 
-// Form Handling
+// Form submission
 document.getElementById('application-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    
     if (!document.getElementById('agreement').checked) {
-        alert("Please agree to the project details to proceed.");
+        alert('프로젝트 진행에 동의해 주세요.\n上記のプロジェクト進行内容に同意してください。\n請同意上述項目。');
         return;
     }
-
-    const submitBtn = e.target.querySelector('.submit-btn');
-    submitBtn.textContent = "Submitting...";
-    submitBtn.disabled = true;
-
-    // Simulate API Call
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
     setTimeout(() => {
-        alert("Thank you! Your application has been submitted.\n감사합니다! 지원이 완료되었습니다.");
-        submitBtn.textContent = "Submitted Successfully";
+        alert('✅ Thank you! Your application has been submitted.\n감사합니다! 지원이 완료되었습니다.');
+        btn.textContent = 'Submitted!';
         e.target.reset();
+        setTimeout(() => { btn.textContent = translations['ko'].form_submit; btn.disabled = false; }, 3000);
     }, 1500);
 });
 
-// Intersection Observer for scroll animations
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('fade-in');
             observer.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-});
-
-// Initialize Icons
-if (window.lucide) {
-    lucide.createIcons();
-}
+// Init
+if (window.lucide) lucide.createIcons();

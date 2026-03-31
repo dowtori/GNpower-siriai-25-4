@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gangneung City Influencer Recruitment | SIRIAI</title>
+    <meta name="description" content="강릉시 해외 IG 파워페이지 홍보 채널 모집. Overseas Instagram Power Page Recruitment for Gangneung City's 'Goblin' filming location campaign.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;700&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans+TC:wght@300;400;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <!-- Splash Screen -->
     <div id="splash" class="splash-screen">
         <div class="splash-content">
-            <h1 class="fade-in">Select Your Language</h1>
+            <img id="splash-logo" src="assets/logos/logo_kr.png" alt="Gangneung City" class="splash-logo">
+            <h1>Select Your Language</h1>
             <div class="lang-options">
-                <button onclick="setLanguage('ko')" class="lang-btn">한국어 (KR)</button>
-                <button onclick="setLanguage('ja')" class="lang-btn">日本語 (JP)</button>
-                <button onclick="setLanguage('zh-tw')" class="lang-btn">繁體中文 (TW)</button>
+                <button onclick="setLanguage('ko')" class="lang-btn">한국어</button>
+                <button onclick="setLanguage('ja')" class="lang-btn">日本語</button>
+                <button onclick="setLanguage('zh-tw')" class="lang-btn">繁體中文</button>
             </div>
             <p class="managed-by">Managed by <strong>SIRIAI</strong></p>
         </div>
@@ -28,89 +30,96 @@
     <main id="main-content" class="hidden">
         <header>
             <div class="header-container">
-                <div class="logo">
-                    <span class="pine">PINE</span><span class="city">CITY</span>
-                    <span class="sub">Gangneung-si</span>
+                <div class="logo-wrap">
+                    <img id="header-logo" src="assets/logos/logo_kr.png" alt="Gangneung City" class="logo-img">
                 </div>
                 <nav>
                     <div class="lang-picker">
                         <button class="lang-toggle" onclick="toggleDropdown()">
                             <i data-lucide="globe"></i>
                             <span class="active-lang-label">KR</span>
-                            <i data-lucide="chevron-down"></i>
+                            <i data-lucide="chevron-down" class="chevron-icon"></i>
                         </button>
                         <div class="lang-dropdown">
-                            <button onclick="setLanguage('ko')">한국어 (KR)</button>
-                            <button onclick="setLanguage('ja')">日本語 (JP)</button>
-                            <button onclick="setLanguage('zh-tw')">繁體中文 (TW)</button>
+                            <button onclick="setLanguage('ko')">🇰🇷 한국어</button>
+                            <button onclick="setLanguage('ja')">🇯🇵 日本語</button>
+                            <button onclick="setLanguage('zh-tw')">🇹🇼 繁體中文</button>
                         </div>
                     </div>
                 </nav>
             </div>
         </header>
 
+        <!-- Hero -->
         <section id="hero" class="hero">
             <div class="hero-overlay"></div>
             <div class="hero-text">
-                <h2 data-i18n="hero_sub">Gangneung City Special Project</h2>
+                <span class="hero-badge" data-i18n="hero_sub">Gangneung City Special Project</span>
                 <h1 data-i18n="hero_title">Overseas IG Power Page Recruitment</h1>
-                <p data-i18n="hero_desc">Help us promote the iconic 'Goblin' filming location to the world.</p>
+                <p data-i18n="hero_desc">Help us promote the iconic filming location to the world.</p>
                 <a href="#apply" class="cta-btn" data-i18n="apply_now">Apply Now</a>
             </div>
         </section>
 
+        <!-- Details: Key Info Cards -->
         <section id="details" class="details-section">
             <div class="container">
                 <div class="details-grid">
                     <div class="detail-card animate-on-scroll">
-                        <i data-lucide="award"></i>
+                        <div class="card-icon orange"><i data-lucide="coins"></i></div>
                         <h3 data-i18n="benefit_title">Remuneration</h3>
-                        <p data-i18n="benefit_desc">300,000 KRW per post</p>
+                        <p class="card-value" data-i18n="benefit_desc">300,000 KRW</p>
                     </div>
                     <div class="detail-card animate-on-scroll">
-                        <i data-lucide="heart"></i>
-                        <h3 data-i18n="target_title">Target Channels</h3>
-                        <p data-i18n="target_desc">A precious opportunity only for selected channels.</p>
+                        <div class="card-icon blue"><i data-lucide="star"></i></div>
+                        <h3 data-i18n="target_title">Campaign Info</h3>
+                        <p data-i18n="target_desc">A precious opportunity for select channels that meet the minimum criteria.</p>
                     </div>
                     <div class="detail-card animate-on-scroll">
-                        <i data-lucide="calendar"></i>
+                        <div class="card-icon red"><i data-lucide="calendar-clock"></i></div>
                         <h3 data-i18n="deadline_title">Deadline</h3>
-                        <p data-i18n="deadline_desc">Until April 5th (Sun)</p>
+                        <p class="card-value" data-i18n="deadline_desc">April 5th (Sun)</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Guide -->
         <section id="guide" class="guide-section">
             <div class="container">
                 <h2 class="section-title" data-i18n="guide_title">Recruitment Guide</h2>
                 <div class="guide-content glass">
                     <div class="guide-item">
                         <h4 data-i18n="item_theme">Promotion Theme</h4>
-                        <p data-i18n="item_theme_desc">Yeongjin Beach (Goblin Filming Location) & Seasonal Travel Spots in Gangneung</p>
+                        <p data-i18n="item_theme_desc">Yeongjin Beach (Goblin Filming Location) & Major Attractions in Gangneung</p>
                     </div>
+                    <div class="guide-divider"></div>
                     <div class="guide-item">
                         <h4 data-i18n="item_schedule">Schedule</h4>
                         <ul class="timeline">
-                            <li><strong data-i18n="schedule_1">Selection:</strong> Week of April 7th</li>
-                            <li><strong data-i18n="schedule_2">Content:</strong> Mid April</li>
+                            <li><strong data-i18n="schedule_1">Selection (Gangneung City Review):</strong> Week of April 7th</li>
+                            <li><strong data-i18n="schedule_2">Content Creation:</strong> Mid April</li>
                             <li><strong data-i18n="schedule_3">Posting:</strong> Week of April 20th</li>
                         </ul>
                     </div>
+                    <div class="guide-divider"></div>
                     <div class="guide-item">
                         <h4 data-i18n="item_portfolio">Agency Portfolio</h4>
-                        <p><a href="https://featpaper.com/v/7jqtPGf2" target="_blank" class="link-btn">View SIRIAI Portfolio <i data-lucide="external-link"></i></a></p>
+                        <a href="https://featpaper.com/v/7jqtPGf2" target="_blank" class="link-btn">
+                            View SIRIAI Portfolio <i data-lucide="external-link"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Application Form -->
         <section id="apply" class="apply-section">
             <div class="container">
-                <h2 class="section-title" data-i18n="apply_title">Channel Application</h2>
-                <form id="application-form" class="glass">
+                <h2 class="section-title" data-i18n="apply_title">Apply Now</h2>
+                <form id="application-form" class="form-card glass">
                     <div class="form-group">
-                        <label for="page-url" data-i18n="form_page_name">Profile Link (URL)</label>
+                        <label for="page-url" data-i18n="form_page_name">Instagram Profile Link (URL)</label>
                         <input type="url" id="page-url" required placeholder="https://www.instagram.com/your_page">
                     </div>
                     <div class="form-group">
@@ -121,24 +130,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="contact" data-i18n="form_contact">Contact (Email/WhatsApp/Line)</label>
+                        <label for="contact" data-i18n="form_contact">Contact (Email / WhatsApp / Line)</label>
                         <input type="text" id="contact" required>
                     </div>
                     <div class="form-group checkbox-group">
                         <input type="checkbox" id="agreement" required>
-                        <label for="agreement" data-i18n="form_agreement">I agree to the project details.</label>
+                        <label for="agreement" data-i18n="form_agreement">I agree to the project details above.</label>
                     </div>
                     <button type="submit" class="submit-btn" data-i18n="form_submit">Submit Application</button>
                 </form>
             </div>
         </section>
 
+        <!-- Footer -->
         <footer>
-            <div class="container">
+            <div class="container footer-inner">
+                <img src="assets/logos/logo_en.png" alt="Gangneung City" class="footer-logo">
                 <p>&copy; 2026 Gangneung City. Managed by <a href="https://featpaper.com/v/7jqtPGf2" target="_blank">SIRIAI</a>.</p>
-                <div class="footer-links">
-                    <a href="https://www.instagram.com/p/DVvRqn6EdL8" target="_blank">Content Ref</a>
-                </div>
+                <a href="https://www.instagram.com/p/DVvRqn6EdL8" target="_blank" class="footer-link">Content Ref <i data-lucide="external-link"></i></a>
             </div>
         </footer>
     </main>
