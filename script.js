@@ -33,7 +33,12 @@ const translations = {
         management_title: "운영 및 지급",
         management_desc: "선정 후 강릉시로 관리가 이관되며, 비용은 강릉시 혹은 프로젝트 주관사에서 직접 지급합니다.",
         contact_inquiry_title: "문의접수",
-        contact_inquiry_desc: "sbsiriai@gmail.com (편하신 언어로 문의해 주세요)"
+        contact_inquiry_desc: "sbsiriai@gmail.com (편하신 언어로 문의해 주세요)",
+        alert_agree: "프로젝트 진행에 동의해 주세요.",
+        alert_success: "✅ 지원이 완료되었습니다. 감사합니다!",
+        alert_error: "❌ 전송 중 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
+        btn_submitting: "제출 중...",
+        btn_submitted: "제출 완료!"
     },
     ja: {
         hero_sub: "江陵市特別プロジェクト",
@@ -63,7 +68,12 @@ const translations = {
         management_title: "運営およびお支払い",
         management_desc: "選定後、管理は江陵市に移行し、費用は江陵市またはプロジェクト主催者より直接支払われます。",
         contact_inquiry_title: "お問い合わせ",
-        contact_inquiry_desc: "sbsiriai@gmail.com (母国語でお気軽にお問い合わせください)"
+        contact_inquiry_desc: "sbsiriai@gmail.com (母国語でお気軽にお問い合わせください)",
+        alert_agree: "プロジェクト進行内容に同意してください。",
+        alert_success: "✅ 応募が完了しました。ありがとうございます！",
+        alert_error: "❌ 送信中にエラーが発生しました。後でもう一度お試しください。",
+        btn_submitting: "送信中...",
+        btn_submitted: "送信完了！"
     },
     "zh-tw": {
         hero_sub: "江陵市特別項目",
@@ -93,7 +103,12 @@ const translations = {
         management_title: "營運與支付",
         management_desc: "入選後管理將移交至江陵市，費用將由江陵市或項目主辦方直接支付。",
         contact_inquiry_title: "諮詢聯繫",
-        contact_inquiry_desc: "sbsiriai@gmail.com (歡迎使用您的母語詢問)"
+        contact_inquiry_desc: "sbsiriai@gmail.com (歡迎使用您的母語詢問)",
+        alert_agree: "請同意上述項目準備內容。",
+        alert_success: "✅ 申請已提交。非常感謝！",
+        alert_error: "❌ 提交時發生錯誤。請稍後重試。",
+        btn_submitting: "提交中...",
+        btn_submitted: "提交完成！"
     }
 };
 
@@ -154,42 +169,40 @@ const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZ8dnTKDh8Ci
 document.getElementById('application-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
+    let labelTag = document.querySelector('.active-lang-label').textContent.toLowerCase();
+    let langKey = labelTag === 'kr' ? 'ko' : (labelTag === 'jp' ? 'ja' : 'zh-tw');
+    let t = translations[langKey] || translations['ko'];
+
     if (!document.getElementById('agreement').checked) {
-        alert('프로젝트 진행에 동의해 주세요.\n上記のプロジェクト進行内容に同意してください。\n請同意上述項目。');
+        alert(t.alert_agree);
         return;
     }
     
     const form = e.target;
     const btn = form.querySelector('.submit-btn');
     const originalText = btn.textContent;
-    btn.textContent = 'Submitting...';
+    btn.textContent = t.btn_submitting;
     btn.disabled = true;
 
     // Send data to Google Sheets via fetch
     const formData = new FormData(form);
     
-    // We use no-cors mode for simple submissions, or standard POST depending on script setup.
-    // For standard Google Apps Script doPost, simple fetch works but we might not get JSON response.
     fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         body: formData
     })
     .then(response => {
-        // With 'no-cors' or simple google script forms, we might not get a clean response, 
-        // but getting here usually means success if the network request went through.
-        alert('✅ Thank you! Your application has been submitted.\n감사합니다! 지원이 완료되었습니다.');
-        btn.textContent = 'Submitted!';
+        alert(t.alert_success);
+        btn.textContent = t.btn_submitted;
         form.reset();
         setTimeout(() => { 
-            const currentLang = document.querySelector('.active-lang-label').textContent.toLowerCase();
-            const langKey = currentLang === 'kr' ? 'ko' : (currentLang === 'jp' ? 'ja' : 'zh-tw');
-            btn.textContent = translations[langKey] ? translations[langKey].form_submit : originalText; 
+            btn.textContent = t.form_submit; 
             btn.disabled = false; 
         }, 3000);
     })
     .catch(error => {
         console.error('Error!', error.message);
-        alert('❌ Error submitting form. Please try again later.');
+        alert(t.alert_error);
         btn.textContent = originalText;
         btn.disabled = false;
     });
