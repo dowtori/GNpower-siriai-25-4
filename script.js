@@ -148,8 +148,7 @@ window.addEventListener('click', e => {
 });
 
 // --- Google Sheets Integration ---
-// TODO: Replace this with the actual Web App URL you get from Google Apps Script
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbmXR6VgFqcvQgAHP2tVe-UOSs8rFowxCklipcNLQQ1Y3qwa2z2zGlyXv6DPRXx1lK/exec';
 
 // Form submission
 document.getElementById('application-form').addEventListener('submit', function(e) {
