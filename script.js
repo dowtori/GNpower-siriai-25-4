@@ -163,7 +163,7 @@ window.addEventListener('click', e => {
 });
 
 // --- Google Sheets Integration ---
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxZ8dnTKDh8Cirzfb8EW73taxu6j6R_jhc87hD4J2fCD5Dny2RL2mRKMbEbjv9p0RKZ/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAKVVscCLCh3ELbgDAU8CS6RIsDbCSK769tiTASPxSGQufVICo7nGIHmnlfPiKtcM-/exec';
 
 // Form submission
 document.getElementById('application-form').addEventListener('submit', function(e) {
