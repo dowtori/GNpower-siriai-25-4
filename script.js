@@ -186,10 +186,14 @@ document.getElementById('application-form').addEventListener('submit', function(
 
     // Send data to Google Sheets via fetch
     const formData = new FormData(form);
+    const urlEncodedData = new URLSearchParams(formData).toString();
     
     fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: urlEncodedData
     })
     .then(response => {
         alert(t.alert_success);
