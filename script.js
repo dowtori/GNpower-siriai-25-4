@@ -20,16 +20,20 @@ const translations = {
         item_theme: "홍보 주제",
         item_theme_desc: "영진해변(도깨비 촬영지) 및 강릉 주요 관광지",
         item_schedule: "진행 일정",
-        schedule_1: "선정 안내 (강릉시 검토):",
-        schedule_2: "콘텐츠 제작:",
-        schedule_3: "게시 예정:",
+        schedule_1: "선정 안내 (강릉시 검토): 4월 2주차",
+        schedule_2: "콘텐츠 제작: 4월 중순",
+        schedule_3: "게시 예정: 4월 4주차",
         item_portfolio: "운영사 포트폴리오",
         apply_title: "지원하기",
         form_page_name: "인스타그램 프로필 링크 (URL)",
-        form_country: "활용 지역",
+        form_country: "국적",
         form_agreement: "위 프로젝트 진행 내용에 동의합니다.",
         form_contact: "연락처 (Email / Line / WhatsApp)",
-        form_submit: "지원서 제출"
+        form_submit: "지원서 제출",
+        management_title: "운영 및 지급",
+        management_desc: "선정 후 강릉시로 관리가 이관되며, 비용은 강릉시 혹은 프로젝트 주관사에서 직접 지급합니다.",
+        contact_inquiry_title: "문의접수",
+        contact_inquiry_desc: "sbsiriai@gmail.com (편하신 언어로 문의해 주세요)"
     },
     ja: {
         hero_sub: "江陵市特別プロジェクト",
@@ -46,16 +50,20 @@ const translations = {
         item_theme: "プロモーションテーマ",
         item_theme_desc: "領津海辺（『トッケビ』ロケ地）および江陵の主要観光地",
         item_schedule: "進行スケジュール",
-        schedule_1: "選定案内（江陵市の検討）:",
-        schedule_2: "コンテンツ制作:",
-        schedule_3: "投稿予定:",
+        schedule_1: "選定案内（江陵市の検討）: 4月第2週",
+        schedule_2: "コンテンツ制作: 4月中旬",
+        schedule_3: "投稿予定: 4月第4週",
         item_portfolio: "運営会社ポートフォリオ",
         apply_title: "チャンネル応募",
         form_page_name: "Instagramプロフィールリンク (URL)",
-        form_country: "活用地域",
+        form_country: "国籍",
         form_agreement: "上記のプロジェクト進行内容に同意します。",
         form_contact: "連絡先 (Email / Line / WhatsApp)",
-        form_submit: "応募する"
+        form_submit: "応募する",
+        management_title: "運営およびお支払い",
+        management_desc: "選定後、管理は江陵市に移行し、費用は江陵市またはプロジェクト主催者より直接支払われます。",
+        contact_inquiry_title: "お問い合わせ",
+        contact_inquiry_desc: "sbsiriai@gmail.com (母国語でお気軽にお問い合わせください)"
     },
     "zh-tw": {
         hero_sub: "江陵市特別項目",
@@ -72,16 +80,20 @@ const translations = {
         item_theme: "宣傳主題",
         item_theme_desc: "領津海邊（《鬼怪》拍攝地）及江陵主要旅遊景點",
         item_schedule: "活動時程",
-        schedule_1: "入選通知（江陵市審核）:",
-        schedule_2: "內容製作:",
-        schedule_3: "預計發布:",
+        schedule_1: "入選通知（江陵市審核）: 4月第2週",
+        schedule_2: "內容製作: 4月中旬",
+        schedule_3: "預計發布: 4月第4週",
         item_portfolio: "營運代理商作品集",
         apply_title: "頻道申請",
         form_page_name: "Instagram 個人主頁連結 (URL)",
-        form_country: "目標地區",
+        form_country: "國籍",
         form_agreement: "我同意上述項目進行內容。",
         form_contact: "聯繫方式 (Email / Line / WhatsApp)",
-        form_submit: "提交申請"
+        form_submit: "提交申請",
+        management_title: "營運與支付",
+        management_desc: "入選後管理將移交至江陵市，費用將由江陵市或項目主辦方直接支付。",
+        contact_inquiry_title: "諮詢聯繫",
+        contact_inquiry_desc: "sbsiriai@gmail.com (歡迎使用您的母語詢問)"
     }
 };
 
@@ -135,22 +147,53 @@ window.addEventListener('click', e => {
     }
 });
 
+// --- Google Sheets Integration ---
+// TODO: Replace this with the actual Web App URL you get from Google Apps Script
+const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE';
+
 // Form submission
 document.getElementById('application-form').addEventListener('submit', function(e) {
     e.preventDefault();
+    
     if (!document.getElementById('agreement').checked) {
         alert('프로젝트 진행에 동의해 주세요.\n上記のプロジェクト進行内容に同意してください。\n請同意上述項目。');
         return;
     }
-    const btn = e.target.querySelector('.submit-btn');
+    
+    const form = e.target;
+    const btn = form.querySelector('.submit-btn');
+    const originalText = btn.textContent;
     btn.textContent = 'Submitting...';
     btn.disabled = true;
-    setTimeout(() => {
+
+    // Send data to Google Sheets via fetch
+    const formData = new FormData(form);
+    
+    // We use no-cors mode for simple submissions, or standard POST depending on script setup.
+    // For standard Google Apps Script doPost, simple fetch works but we might not get JSON response.
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        // With 'no-cors' or simple google script forms, we might not get a clean response, 
+        // but getting here usually means success if the network request went through.
         alert('✅ Thank you! Your application has been submitted.\n감사합니다! 지원이 완료되었습니다.');
         btn.textContent = 'Submitted!';
-        e.target.reset();
-        setTimeout(() => { btn.textContent = translations['ko'].form_submit; btn.disabled = false; }, 3000);
-    }, 1500);
+        form.reset();
+        setTimeout(() => { 
+            const currentLang = document.querySelector('.active-lang-label').textContent.toLowerCase();
+            const langKey = currentLang === 'kr' ? 'ko' : (currentLang === 'jp' ? 'ja' : 'zh-tw');
+            btn.textContent = translations[langKey] ? translations[langKey].form_submit : originalText; 
+            btn.disabled = false; 
+        }, 3000);
+    })
+    .catch(error => {
+        console.error('Error!', error.message);
+        alert('❌ Error submitting form. Please try again later.');
+        btn.textContent = originalText;
+        btn.disabled = false;
+    });
 });
 
 // Scroll animations
